@@ -1,0 +1,30 @@
+<header>
+	<div class="header-container">
+		<nav class="header-title-nav ">
+			<span class="color-white header-title">Bookers</span>
+		</nav>
+		<!--if ログイン中-->
+		<% if user_signed_in? %>
+		<nav class="header-info-nav">
+			<ul class="header-ul ">
+				<li class="header-li"><%= link_to " Home", user_path(current_user.id), class: "header-info glyphicon glyphicon-home" %></li>
+				<li class="header-li"><%= link_to " Users", users_path, class: "header-info glyphicon glyphicon-user" %></li>
+				<li class="header-li"><%= link_to " Books", books_path, class: "header-info glyphicon glyphicon-book" %></li>
+				<li class="header-li"><%= link_to " logout", destroy_user_session_path, method: :delete, class: "header-info glyphicon glyphicon-log-out logout" %></li>
+			</ul>
+		</nav>
+		<!--else ログイン未-->
+		<% else %>
+		<nav class="header-info-nav">
+			<ul class="header-ul ">
+				<li class="header-li"><%= link_to " Home", root_path, class: "header-info glyphicon glyphicon-home" %></li>
+				<li class="header-li"><%= link_to " About", home_about_path, class: "header-info glyphicon glyphicon-link" %></li>
+				<li class="header-li"><%= link_to " sign up", new_user_registration_path, class: "header-info glyphicon glyphicon-edit" %></li>
+				<li class="header-li"><%= link_to " login", new_user_session_path, class: "header-info glyphicon glyphicon-log-in" %></li>
+			</ul>
+		</nav>
+		<% end %> <!--if else end-->
+	</div>
+
+
+</header>

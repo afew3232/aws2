@@ -1,0 +1,50 @@
+<%= render "users/header" %>
+
+<div class="margin-top-51px">
+	<div class="container">
+		<!--notice-->
+		<p></p>
+		<% if flash[:notice] != nil %>
+			<p><%= flash[:notice] %></p>
+		<% end %>
+
+		<h2>User info</h2>
+
+		<% if @user.errors.any? %>
+		<div class="error-main" id="error_explanation">
+			<% if @user.errors.count == 1 %>
+				<h3><%= @user.errors.count %> error prohibited this obj from being saved:</h3>
+			<% end %>
+			<% if 2 <= @user.errors.count %>
+				<h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
+			<% end %>
+			<ul class="error-ul">
+				<% @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+
+		<%= form_for @user do |f| %>
+		<div class="user-edit-field">
+			<label class="user-edit-label">Name</label>
+			<%= f.text_field :name %>
+		</div>
+		<div class="user-edit-field">
+			<label class="user-edit-label">Image</label>
+			<!--refileなので profile_imageの_idは抜く-->
+			<%= f.attachment_field :profile_image, class: "user-edit-form" %>
+		</div>
+		<div class="user-edit-field">
+			<label class="user-edit-label">Introduction</label>
+			<%= f.text_area :introduction %>
+		</div>
+		<div class="user-edit-actions">
+			<%= f.submit %>
+		</div>
+
+		<% end %>
+	</div>
+</div>
+<%= render "users/footer" %>
